@@ -121,6 +121,7 @@ runtime:
         - imagick
         - readline
         - redis
+        - xdebug
         #- apcu
         #- name: 'blackfire'
         #  configuration:
