@@ -64,6 +64,7 @@ mounts:
     "/var/sessions": "shared:files/sessions"
     # Uncomment if you want to use DFS clustering:
     #"/dfsdata": "shared:files/dfsdata"
+    "/shared": "shared:files/shared"
 
 # The hooks that will be performed when the package is deployed.
 hooks:
@@ -98,6 +99,15 @@ hooks:
         # Example of additional deploy hooks if you use doctrine and/or kaliop migration bundle
         ##bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
         ##bin/console kaliop:migration:migrate --no-interaction --no-debug
+        if [ ! -d "/app/shared/ghostscript" ]; then
+            cd /app/sources
+            tar xzf ghostscript-9.23.tar.gz
+            cd ghostscript-9.23
+            ./configure --prefix=/app/shared/ghostscript
+            make
+            make install
+        fi
+
     # Post deploy hook, like deploy but after being deployed and live, for deploy tasks we can do asynchronously
     post_deploy: |
         set -e
