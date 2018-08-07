@@ -100,12 +100,15 @@ hooks:
         ##bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
         ##bin/console kaliop:migration:migrate --no-interaction --no-debug
         if [ ! -d "/app/shared/ghostscript" ]; then
-            cd /app/sources
+            cp /app/sources/ghostscript-9.23.tar.gz /app/shared/ghostscript-9.23.tar.gz
+            cd /app/shared
             tar xzf ghostscript-9.23.tar.gz
             cd ghostscript-9.23
             ./configure --prefix=/app/shared/ghostscript
             make
             make install
+            cd ../
+            rm -Rf hostscript-9.23
         fi
 
     # Post deploy hook, like deploy but after being deployed and live, for deploy tasks we can do asynchronously
