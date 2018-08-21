@@ -4,6 +4,12 @@ https://ezplatformcloud.contextualcode.site/:
     cache:
         enabled: false
 
+https://admin.ezplatformcloud.contextualcode.site/:
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: false
+
 https://ezplatformcloud.ccplatform.net/:
     type: upstream
     upstream: app:http
